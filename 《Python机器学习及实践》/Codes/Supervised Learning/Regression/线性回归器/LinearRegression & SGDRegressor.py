@@ -71,8 +71,31 @@ from sklearn.metrics import r2_score , mean_squared_error , mean_absolute_error
 # 使用 r2_score 模块，并输出评估结果
 print 'The value of R-squared of LinearRegression is', r2_score(y_test , lr_y_predict)
 
+# 使用 mean_squared_error 模块，并输出评估结果。
+print 'The mean squared error of LinearRegression is', mean_squared_error(ss_y.inverse_transform(y_test),ss_y.inverse_transform(lr_y_predict))
+
+# 使用 mean_absolute_error 模块，并输出评估结果。
+print 'The mean absolute error of LinearRegression is', mean_absolute_error(ss_y.inverse_transform(y_test),ss_y.inverse_transform(lr_y_predict))
 
 
+
+
+
+
+
+
+
+# 使用 SGDRegressor 模型自带的评估模块，并输出评估结果。
+print 'The value of default measurement of SGDRegressor is', sgdr.score(x_test , y_test)
+
+# 使用 r2_score 模块，并输出评估结果
+print 'The value of R-squared of SGDRegressor is', r2_score(y_test, sgdr_y_predict)
+
+# 使用 mean_squared_error 模块，并输出评估结果。
+print 'The mean squared error of SGDRegressor is', mean_squared_error(ss_y.inverse_transform(y_test),ss_y.inverse_transform(sgdr_y_predict))
+
+# 使用 mean_absolute_error 模块，并输出评估结果。
+print 'The mean absolute error of SGDRegressor is', mean_absolute_error(ss_y.inverse_transform(y_test),ss_y.inverse_transform(sgdr_y_predict))
 
 
 
