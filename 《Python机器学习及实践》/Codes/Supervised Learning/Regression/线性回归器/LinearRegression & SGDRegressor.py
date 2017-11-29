@@ -55,7 +55,7 @@ lr_y_predict = lr.predict(x_test)
 # SGD Regression
 from sklearn.linear_model import SGDRegressor
 sgdr = SGDRegressor(max_iter=1000)                      #   最大迭代次数设置
-sgdr.fit(x_train , y_train.ravel())
+sgdr.fit(x_train , y_train.ravel())                     # 把二维数组转换为1维数组  对应上面的y_train_reshape(-1,1)
 sgdr_y_predict = sgdr.predict(x_test)
 
 
