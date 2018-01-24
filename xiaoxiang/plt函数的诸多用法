@@ -1,0 +1,74 @@
+1、分割子图    plt.subplot(numRows, numCols, plotNum)
+    # 分割出 3*2=6 个子图，并在1号子图作图。
+        plt.subplot(321)
+    # 分割成第一行两个图，第二行一整个图
+        plt.subplot(221) # 第一行的左图
+        plt.subplot(222) # 第一行的右图
+        plt.subplot(212) # 第二整行
+
+2、横纵坐标
+    plt.xlim([0,10]) # x轴刻度范围
+    plt.ylim([0,10]) # y轴刻度范围
+
+    plt.xlabel('X', fontsize=15)    # 横轴标记
+    plt.ylabel('Y', fontsize=15)    # 纵轴标记
+
+
+
+3、控制画布背景
+    plt.figure(facecolor='w')                     # 控制背景颜色
+    plt.figure(figsize=(3, 3))                      # 控制窗口大小
+    plt.grid(True)                                  #显示网格
+    plt.title(u'正态分布', fontsize=18, fontproperties=font_ch)
+
+
+4、散点图
+    plt.scatter(x,y,c=T,s=25,alpha=0.4,marker='o')
+        #T:散点的颜色
+        #s：散点的大小
+        #alpha:是透明程度
+        #marker：散点的形状
+
+
+
+
+
+
+### color
+b---blue   c---cyan  g---green    k----black
+m---magenta r---red  w---white    y----yellow
+
+### marker
+# marker	description
+    # ”.”	point
+    # ”,”	pixel
+    # “o”	circle
+    # “v”	triangle_down
+    # “^”	triangle_up
+    # “<”	triangle_left
+    # “>”	triangle_right
+    # “1”	tri_down
+    # “2”	tri_up
+    # “3”	tri_left
+    # “4”	tri_right
+    # “8”	octagon
+    # “s”	square
+    # “p”	pentagon
+    # “*”	star
+    # “h”	hexagon1
+    # “H”	hexagon2
+    # “+”	plus
+    # “x”	x
+    # “D”	diamond
+    # “d”	thin_diamond
+    # “|”	vline
+    # “_”	hline
+    # TICKLEFT	tickleft
+    # TICKRIGHT	tickright
+    # TICKUP	tickup
+    # TICKDOWN	tickdown
+    # CARETLEFT	caretleft
+    # CARETRIGHT	caretright
+    # CARETUP	caretup
+    # CARETDOWN	caretdown
+
