@@ -1,0 +1,198 @@
+1、分割子图    plt.subplot(numRows, numCols, plotNum)
+    # 分割出 3*2=6 个子图，并在1号子图作图。
+        plt.subplot(321)
+    # 分割成第一行两个图，第二行一整个图
+        plt.subplot(221) # 第一行的左图
+        plt.subplot(222) # 第一行的右图
+        plt.subplot(212) # 第二整行
+
+2、横纵坐标
+    plt.xlim([0,10]) # x轴刻度范围
+    plt.ylim([0,10]) # y轴刻度范围
+
+    plt.xlabel('X', fontsize=15)    # 横轴标记
+    plt.ylabel('Y', fontsize=15)    # 纵轴标记
+
+
+
+3、控制画布背景
+    plt.figure(facecolor='w')                     # 控制背景颜色
+    plt.figure(figsize=(3, 3))                      # 控制窗口大小
+    plt.grid(True)                                  #显示网格
+    plt.title(u'正态分布', fontsize=18, fontproperties=font_ch)
+
+
+4、散点图
+    plt.scatter(x,y,c=T,s=25,alpha=0.4,marker='o')
+        #T:散点的颜色
+        #s：散点的大小
+        #alpha:是透明程度
+        #marker：散点的形状
+
+
+5、把图像保存为文件
+    plt.savefig('test.png')
+
+
+
+# coding:utf-8
+
+import math
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
+from scipy.stats import norm, poisson
+from scipy.optimize import leastsq
+
+if __name__ == "__main__":
+
+    #正态分布函数
+    # mu = 0
+    # sigma = 1
+    # x = np.linspace(mu-3*sigma , mu+3*sigma , 50)
+    # y = np.exp(-(x - mu) ** 2 / (2 * sigma ** 2)) / (math.sqrt(2 * math.pi) * sigma)
+
+
+
+    #绘图
+    font_ch = FontProperties(fname='/System/Library/Fonts/PingFang.ttc')
+    # # # plt.figure(facecolor='w')                     # 控制背景颜色
+    # # plt.figure(figsize=(3, 3))                      # 控制窗口大小
+    # # plt.plot(x,y,'ro-',linewidth=2)
+    # plt.plot(x, y, 'r-', x, y, 'gv', linewidth=2, markersize=3)
+    # plt.xlabel('X', fontsize=15)
+    # plt.ylabel('Y', fontsize=15)
+    # plt.title(u'正态分布', fontsize=18, fontproperties=font_ch)
+    # plt.grid(True)                                  #显示网格
+    # plt.show()
+
+
+
+    # # 5.3  x的x次方
+    # # x ** x        x > 0
+    # # (-x) ** (-x)  x < 0
+    # def f(x):
+    #     y = np.ones_like(x)
+    #     i = x > 0
+    #     y[i] = np.power(x[i], x[i])
+    #     i = x < 0
+    #     y[i] = np.power(-x[i], -x[i])
+    #     return y
+    #
+    # # 5.3 x^x
+    # plt.figure(facecolor='w')
+    # x = np.linspace(-1.3, 1.3, 101)
+    # y = f(x)
+    # plt.plot(x, y, 'g-', label='x^x', linewidth=2)
+    # plt.grid()
+    # plt.legend(loc='upper left')
+    # plt.show()
+
+
+
+
+    # 6.1 均匀分布
+    # x = np.random.rand(10000)
+    # t = np.arange(len(x))                        #len(x)   x的长度
+    # plt.hist(x, 30, color='m', alpha=0.5, label=u'uniform distribution')   #直方图  x坐标分30份
+    # # plt.plot(t, x, 'g.', label=u'均匀分布')
+    # plt.legend(loc='upper left')
+    # plt.grid()
+    # plt.show()
+
+
+    # # 6.4 直方图的使用
+    # mu = 2
+    # sigma = 3
+    # data = mu + sigma * np.random.randn(1000)              #标准正太分布返回值   np.random.randn
+    # h = plt.hist(data, 30, normed=1, color='#FFFFA0')
+    # x = h[1]                                              #h[0]为概率大小   h[1]为取值data
+    # y = norm.pdf(x, loc=mu, scale=sigma)                  #y为x出参数为mu、sigma的正态分布取值
+    # plt.plot(x, y, 'r-', x, y, 'ro', linewidth=2, markersize=4)
+    # plt.grid()
+    # plt.show()
+
+    # 6.3 Poisson分布
+    # x = np.random.poisson(lam=5, size=10000)                 #泊松分布
+    # # np.random.binomial(n,p,size=N),函数的返回值表示n中成功的次数，且以Cn^x*p^x*(1-p)^(n-x)的概率选择成功x次
+    # # normal_values = np.random.normal(size=N)  正态分布
+    # print x
+    # pillar = 15
+    # a = plt.hist(x, bins=pillar, normed=True, range=[0, pillar], color='g', alpha=0.5) #bins表示数据的宽度，range表示起始值和终止值
+    # normed 是否对y轴数据进行标准化(如果为True，则是在本区间的点在所有的点中所占的概率)  如果 normed 为False， 则是显示点的数量
+    # print a
+    # print a[0].sum()                           #表示a（0）的和
+    # plt.grid()
+    # plt.show()
+
+
+
+
+
+
+    # 8.1 scipy
+    # 线性回归例1  （最小二乘法）
+    # def residual(t, x, y):
+    #     return y - (t[0] * x ** 2 + t[1] * x + t[2])
+    #
+    # x = np.linspace(-2, 2, 50)
+    # A, B, C = 2, 3, -1
+    # #让y的值上浮动0.75
+    # y = (A * x ** 2 + B * x + C) + np.random.rand(len(x))*0.75              #np.random.rand(1000)   [0,1)见平均分配1000次
+    # #用最小2乘法算出预测值
+    # t = leastsq(residual, [0, 0, 0], args=(x, y))     #leastsq  最小二乘法   第一个参数为误差函数  【0，0，0】是初始值，args是误差函数中的参数
+    # theta = t[0]
+    # # print t                           #leastsq的返回值是一个二维数组，第一个是最终预估的函数值参数，第二个是cost function，用来度量预测错误的程度，模型越准确，此值越小。
+    # print '真实值：', A, B, C
+    # print '预测值：', theta
+    # y_hat = theta[0] * x ** 2 + theta[1] * x + theta[2]
+    # plt.plot(x, y, 'r-', linewidth=2, label=u'Actual')
+    # plt.plot(x, y_hat, 'g-', linewidth=2, label=u'Predict')
+    # plt.legend(loc='upper left')
+    # plt.grid()
+    # plt.show()
+
+
+
+
+
+
+### color
+b---blue   c---cyan  g---green    k----black
+m---magenta r---red  w---white    y----yellow
+
+### marker
+# marker	description
+    # ”.”	point
+    # ”,”	pixel
+    # “o”	circle
+    # “v”	triangle_down
+    # “^”	triangle_up
+    # “<”	triangle_left
+    # “>”	triangle_right
+    # “1”	tri_down
+    # “2”	tri_up
+    # “3”	tri_left
+    # “4”	tri_right
+    # “8”	octagon
+    # “s”	square
+    # “p”	pentagon
+    # “*”	star
+    # “h”	hexagon1
+    # “H”	hexagon2
+    # “+”	plus
+    # “x”	x
+    # “D”	diamond
+    # “d”	thin_diamond
+    # “|”	vline
+    # “_”	hline
+    # TICKLEFT	tickleft
+    # TICKRIGHT	tickright
+    # TICKUP	tickup
+    # TICKDOWN	tickdown
+    # CARETLEFT	caretleft
+    # CARETRIGHT	caretright
+    # CARETUP	caretup
+    # CARETDOWN	caretdown
+

@@ -18,7 +18,7 @@ data = pd.read_csv('breast-cancer-wisconsin.data', names=column_names)
 
 
 # 处理数据  将？替换为标准缺失值表示
-data = data.replace(to_replace='?',value=np.nan)  # 把问好的项目替换为numpy.nan值
+data = data.replace(to_replace='?',value=np.nan)  # 把"?"的项目替换为numpy.nan值
 # 丢弃带有缺失值的数据（只要有一个维度有缺失）
 data = data.dropna(how = 'any')       # data用法： dropna(axis = 0(行)、1（列） ， how = 'all'(所有空才删)、'any'（任意一项为空就删））
 # 输出data的数据量和维度
