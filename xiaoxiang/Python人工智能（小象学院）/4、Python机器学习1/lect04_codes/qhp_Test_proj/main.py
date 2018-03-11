@@ -17,7 +17,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from matplotlib import pyplot as plt
 import seaborn as sns
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from matplotlib.font_manager import FontProperties
+
+np.set_printoptions(suppress=True)
 
 def get_font():
     """
@@ -66,13 +71,18 @@ def main():
     """
     # 加载数据
     undressed_data = pd.read_csv(os.path.join(config.dataset_path, 'data.csv'))
-    train_data, test_data = train_test_split(undressed_data, test_size=0.25, random_state=7)
+    train_data, test_data = train_test_split(undressed_data, test_size=0.25, random_state=77)
 
     # 数据查看
-    inspect_dataset(train_data, test_data)
+    # inspect_datasetfeat_cols(train_data, test_data)
 
-    #
+    # 构建数据集
+    X_train = train_data[config.feat_cols].values
+    X_test = test_data[config.feat_cols].values
+    y_train = train_data[config.label_col].values
+    y_test = test_data[config.label_col].values
 
+  
 
 
 if __name__ == '__main__':
